@@ -93,7 +93,7 @@ class StepperSR
 	void SetSpeed(float);
 };
 
-StepperSR::StepperSR(int Pin1_, int Pin2_, int Pin3_, int Pin4_, int PasosPorRev_)
+StepperSR::StepperSR(int PasosPorRev_, int Pin1_, int Pin2_, int Pin3_, int Pin4_)
 {
 	Pin1=Pin1_;
 	Pin2=Pin2_;
