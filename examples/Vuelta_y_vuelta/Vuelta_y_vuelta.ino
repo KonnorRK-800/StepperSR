@@ -13,10 +13,10 @@
 
 #include <StepperSR.h>
 
-StepperSR myStepperA(0,1,2,3,200); //Aqui declaramos los constructores para los motores.
-StepperSR myStepperB(4,5,6,7,200); //La sintaxis del constructor es: StepperSR nombreInstancia(int Pin1, int Pin2,int Pin3·,int Pin4,int Pasos/RevMotor); (el ultimo parametro depende de los pasos que tenga que hacer el motor para dar una vuelta)
-StepperSR myStepperC(8,9,10,11,200);// Los pines que configuramos aqui con los pines del registro de desplazamiento al que iran conectados al motor
-StepperSR myStepperD(12,13,14,15,200);
+StepperSR myStepperA(200,0,1,2,3); //Aqui declaramos los constructores para los motores.
+StepperSR myStepperB(200,4,5,6,7); //La sintaxis del constructor es: StepperSR nombreInstancia(int Pasos/RevMotor, int Pin1, int Pin2,int Pin3·,int Pin4); (el primer parametro depende de los pasos que tenga que hacer el motor para dar una vuelta)
+StepperSR myStepperC(200,8,9,10,11);// Los pines que configuramos aqui con los pines del registro de desplazamiento al que iran conectados al motor
+StepperSR myStepperD(200,12,13,14,15);
 
 
 void setup()
