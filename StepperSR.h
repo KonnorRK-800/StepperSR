@@ -82,6 +82,7 @@ class StepperSR
 	long WaitMicroseconds;
 	void Out(int);
 	void ExDelayMicroseconds(long);
+	int Mode;
 	int Pin1;
 	int Pin2;
 	int Pin3;
@@ -99,6 +100,19 @@ StepperSR::StepperSR(int PasosPorRev_, int Pin1_, int Pin2_, int Pin3_, int Pin4
 	Pin2=Pin2_;
 	Pin3=Pin3_;
 	Pin4=Pin4_;
+	Mode=0;
+	PasosPorRev=PasosPorRev_;
+	WaitMicroseconds=41666;
+	PasosRestantes=0;
+	PasoActual=1;
+	Out(1);
+}
+
+StepperSR::StepperSR(int PasosPorRev_, int Pin1_, int Pin2_)
+{
+	Pin1=Pin1_;
+	Pin2=Pin2_;
+	Mode=1;
 	PasosPorRev=PasosPorRev_;
 	WaitMicroseconds=41666;
 	PasosRestantes=0;
@@ -164,6 +178,8 @@ void StepperSR::SetSpeed(float RPM_)
 
 void StepperSR::Out(int Out_)
 {
+if(Mode==0)
+ {
 	if (Out_ == 0) {
 		RefreshMem(Pin1, HIGH);
 		RefreshMem(Pin2, LOW);
@@ -192,6 +208,34 @@ void StepperSR::Out(int Out_)
 		RefreshMem(Pin4, LOW);
     PrntSR();
 	}
+ }
+else if(Mode==1)
+ {
+	if (Out_ == 0)
+			{
+		RefreshMem(Pin1, HIGH);
+		RefreshMem(Pin2, HIGH);
+    		PrntSR();
+		}
+	else if ((Out_ == 1)) 
+		{
+		RefreshMem(Pin1, HIGH);
+		RefreshMem(Pin2, LOW);
+    		PrntSR();
+		}
+	else if ((Out_ == 2))
+		{
+		RefreshMem(Pin1, LOW);
+		RefreshMem(Pin2, LOW);
+   		PrntSR();
+			}
+	else if ((Out_ == 3))
+		{
+		RefreshMem(Pin1, LOW);
+		RefreshMem(Pin2, HIGH);
+    		PrntSR();
+		}
+ }
 	
 }
 void StepperSR::ExDelayMicroseconds(long time_)
